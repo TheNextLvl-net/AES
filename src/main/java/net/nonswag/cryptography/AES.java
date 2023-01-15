@@ -22,6 +22,7 @@ import java.util.Base64;
 @Getter
 @RequiredArgsConstructor
 @FieldsAreNonnullByDefault
+@SuppressWarnings("unused")
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class AES {
