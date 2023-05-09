@@ -8,9 +8,9 @@
  * Artifact Information:
 ```xml
 <dependency>
-    <groupId>net.nonswag.crypt</groupId>
+    <groupId>net.thenextlvl.crypto</groupId>
     <artifactId>aes</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.0</version>
     <scope>compile</scope>
 </dependency>
  ```
