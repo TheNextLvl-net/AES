@@ -13,6 +13,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
+import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
@@ -22,7 +23,6 @@ import java.util.Base64;
 @Getter
 @RequiredArgsConstructor
 @FieldsAreNonnullByDefault
-@SuppressWarnings("unused")
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class AES {
@@ -32,7 +32,7 @@ public class AES {
      * @param secret the secret key that should be used for de- and encoding
      */
     public AES(byte[] secret) {
-        this(new Key(secret));
+        this(new SecretKeySpec(secret, "AES"));
     }
 
     /**
@@ -95,14 +95,8 @@ public class AES {
     private Cipher getCypher() throws NoSuchAlgorithmException {
         try {
             return Cipher.getInstance("AES");
-        } catch (NoSuchPaddingException ignored) {
-            throw new IllegalStateException(); // This will never happen
-        }
-    }
-
-    public static class Key extends SecretKeySpec {
-        public Key(byte[] secretKey) {
-            super(secretKey, "AES");
+        } catch (NoSuchPaddingException e) {
+            throw new IllegalStateException(e);
         }
     }
 }
