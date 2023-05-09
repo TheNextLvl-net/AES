@@ -1,4 +1,4 @@
-# Advanced Encryption Standart
+# Advanced Encryption Standard
 ```xml
 <repository>
     <id>releases</id>
