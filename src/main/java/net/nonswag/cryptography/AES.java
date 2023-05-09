@@ -1,11 +1,11 @@
 package net.nonswag.cryptography;
 
+import core.annotation.FieldsAreNonnullByDefault;
+import core.annotation.MethodsReturnNonnullByDefault;
+import core.annotation.ParametersAreNonnullByDefault;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.nonswag.core.api.annotation.FieldsAreNonnullByDefault;
-import net.nonswag.core.api.annotation.MethodsReturnNonnullByDefault;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
