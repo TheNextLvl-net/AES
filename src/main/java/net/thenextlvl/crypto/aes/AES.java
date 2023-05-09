@@ -1,4 +1,4 @@
-package net.nonswag.cryptography;
+package net.thenextlvl.crypto.aes;
 
 import core.annotation.FieldsAreNonnullByDefault;
 import core.annotation.MethodsReturnNonnullByDefault;
