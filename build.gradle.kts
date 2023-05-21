@@ -4,12 +4,15 @@ plugins {
 }
 
 java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
     withSourcesJar()
     withJavadocJar()
 }
 
 group = "net.thenextlvl.crypto"
-version = "1.0.0"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
