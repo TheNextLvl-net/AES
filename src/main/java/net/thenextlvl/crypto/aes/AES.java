@@ -74,7 +74,7 @@ public class AES {
      * @throws InvalidKeyException thrown when the input was encrypted with another key
      */
     public String decrypt(byte[] value) throws NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-        Cipher aes = getCypher();
+        Cipher aes = getCipher();
         aes.init(Cipher.DECRYPT_MODE, key);
         return new String(aes.doFinal(Base64.getDecoder().decode(value)));
     }
@@ -98,7 +98,7 @@ public class AES {
      * @throws NoSuchAlgorithmException thrown when the aes cipher was not found
      */
     public String encrypt(byte[] value) throws NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-        Cipher aes = getCypher();
+        Cipher aes = getCipher();
         aes.init(Cipher.ENCRYPT_MODE, key);
         return Base64.getEncoder().encodeToString(aes.doFinal(value));
     }
@@ -112,7 +112,7 @@ public class AES {
         return key;
     }
 
-    private Cipher getCypher() throws NoSuchAlgorithmException {
+    private Cipher getCipher() throws NoSuchAlgorithmException {
         try {
             return Cipher.getInstance("AES");
         } catch (NoSuchPaddingException e) {
