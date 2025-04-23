@@ -18,14 +18,11 @@ version = "1.0.2"
 
 repositories {
     mavenCentral()
-    maven("https://repo.thenextlvl.net/releases")
 }
 
 dependencies {
-    compileOnly("org.projectlombok:lombok:1.18.26")
-    compileOnly("net.thenextlvl.core:annotations:1.0.0")
+    implementation("org.jspecify:jspecify:1.0.0")
 
-    annotationProcessor("org.projectlombok:lombok:1.18.26")
 }
 
 publishing {

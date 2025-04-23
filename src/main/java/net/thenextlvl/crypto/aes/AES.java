@@ -1,10 +1,6 @@
 package net.thenextlvl.crypto.aes;
 
-import core.annotation.FieldsAreNonnullByDefault;
-import core.annotation.MethodsReturnNonnullByDefault;
-import core.annotation.ParametersAreNonnullByDefault;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import org.jspecify.annotations.NullMarked;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -20,11 +16,7 @@ import java.util.Base64;
 /**
  * An Advanced Encryption Standard (short: AES) implementation
  */
-@Getter
-@RequiredArgsConstructor
-@FieldsAreNonnullByDefault
-@ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
+@NullMarked
 public class AES {
     private final Key key;
 
@@ -40,6 +32,15 @@ public class AES {
      */
     public AES(String secretKey) {
         this(secretKey.getBytes(StandardCharsets.UTF_8));
+    }
+
+    /**
+     * Constructs a new AES instance with the provided cryptographic key.
+     *
+     * @param key the cryptographic key that should be used for encryption and decryption
+     */
+    public AES(Key key) {
+        this.key = key;
     }
 
     /**
@@ -98,5 +99,14 @@ public class AES {
         } catch (NoSuchPaddingException e) {
             throw new IllegalStateException(e);
         }
+    }
+
+    /**
+     * Retrieves the cryptographic key used by this instance of AES.
+     *
+     * @return the cryptographic key
+     */
+    public Key getKey() {
+        return key;
     }
 }
