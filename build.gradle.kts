@@ -4,11 +4,13 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
     withSourcesJar()
     withJavadocJar()
+}
+
+tasks.compileJava {
+    options.release.set(21)
 }
 
 group = "net.thenextlvl.crypto"
