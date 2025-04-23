@@ -21,6 +21,16 @@ public class AES {
     private final Key key;
 
     /**
+     * Based on the key size, AES supports three variants:
+     * <ul>
+     *     <li>AES-128 (128 bits)</li>
+     *     <li>AES-192 (192 bits)</li>
+     *     <li>AES-256 (256 bits)</li>
+     * </ul>
+     *
+     * Read more about
+     * <a href="https://www.baeldung.com/java-secure-aes-key">Generating a Secure AES Key</a>
+     *
      * @param secret the secret key that should be used for de- and encoding
      */
     public AES(byte[] secret) {
@@ -44,50 +54,50 @@ public class AES {
     }
 
     /**
-     * Decode any given string that was encoded using the same key
+     * Decrypt any given string that was encrypted using the same key
      *
-     * @param value the string you want to decode
-     * @return the encoded string
-     * @throws NoSuchAlgorithmException thrown when the aes cypher was not found
-     * @throws InvalidKeyException thrown when the input was encoded with another key
+     * @param value the string you want to decrypt
+     * @return the encrypted string
+     * @throws NoSuchAlgorithmException thrown when the aes cipher was not found
+     * @throws InvalidKeyException thrown when the input was encrypted with another key
      */
-    public String decode(String value) throws NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-        return decode(value.getBytes(StandardCharsets.UTF_8));
+    public String decrypt(String value) throws NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+        return decrypt(value.getBytes(StandardCharsets.UTF_8));
     }
 
     /**
-     * Decode any given bytes that where encoded using the same key
+     * Decrypt any given bytes that where encrypted using the same key
      *
-     * @param value the bytes you want to decode
-     * @return the encoded string
-     * @throws NoSuchAlgorithmException thrown when the aes cypher was not found
-     * @throws InvalidKeyException thrown when the input was encoded with another key
+     * @param value the bytes you want to decrypt
+     * @return the encrypted string
+     * @throws NoSuchAlgorithmException thrown when the aes cipher was not found
+     * @throws InvalidKeyException thrown when the input was encrypted with another key
      */
-    public String decode(byte[] value) throws NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+    public String decrypt(byte[] value) throws NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         Cipher aes = getCypher();
         aes.init(Cipher.DECRYPT_MODE, key);
         return new String(aes.doFinal(Base64.getDecoder().decode(value)));
     }
 
     /**
-     * Encode any given string
+     * Encrypt any given string
      *
-     * @param value the string you want to encode
-     * @return the decoded string
-     * @throws NoSuchAlgorithmException thrown when the aes cypher was not found
+     * @param value the string you want to encrypt
+     * @return the decrypted string
+     * @throws NoSuchAlgorithmException thrown when the aes cipher was not found
      */
-    public String encode(String value) throws NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-        return encode(value.getBytes(StandardCharsets.UTF_8));
+    public String encrypt(String value) throws NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+        return encrypt(value.getBytes(StandardCharsets.UTF_8));
     }
 
     /**
-     * Decode any given bytes
+     * Decrypt any given bytes
      *
-     * @param value the bytes you want to encode
-     * @return the decoded string
-     * @throws NoSuchAlgorithmException thrown when the aes cypher was not found
+     * @param value the bytes you want to encrypt
+     * @return the decrypted string
+     * @throws NoSuchAlgorithmException thrown when the aes cipher was not found
      */
-    public String encode(byte[] value) throws NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+    public String encrypt(byte[] value) throws NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         Cipher aes = getCypher();
         aes.init(Cipher.ENCRYPT_MODE, key);
         return Base64.getEncoder().encodeToString(aes.doFinal(value));
