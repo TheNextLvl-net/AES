@@ -44,7 +44,8 @@ public class AES {
     }
 
     /**
-     * decode any given string that was encoded using the same key
+     * Decode any given string that was encoded using the same key
+     *
      * @param value the string you want to decode
      * @return the encoded string
      * @throws NoSuchAlgorithmException thrown when the aes cypher was not found
@@ -55,7 +56,8 @@ public class AES {
     }
 
     /**
-     * decode any given bytes that where encoded using the same key
+     * Decode any given bytes that where encoded using the same key
+     *
      * @param value the bytes you want to decode
      * @return the encoded string
      * @throws NoSuchAlgorithmException thrown when the aes cypher was not found
@@ -68,7 +70,8 @@ public class AES {
     }
 
     /**
-     * encode any given string
+     * Encode any given string
+     *
      * @param value the string you want to encode
      * @return the decoded string
      * @throws NoSuchAlgorithmException thrown when the aes cypher was not found
@@ -78,7 +81,8 @@ public class AES {
     }
 
     /**
-     * decode any given bytes
+     * Decode any given bytes
+     *
      * @param value the bytes you want to encode
      * @return the decoded string
      * @throws NoSuchAlgorithmException thrown when the aes cypher was not found
@@ -90,23 +94,19 @@ public class AES {
     }
 
     /**
-     * @return the aes cypher
-     * @throws NoSuchAlgorithmException thrown when the aes cypher was not found
-     */
-    private Cipher getCypher() throws NoSuchAlgorithmException {
-        try {
-            return Cipher.getInstance("AES");
-        } catch (NoSuchPaddingException e) {
-            throw new IllegalStateException(e);
-        }
-    }
-
-    /**
      * Retrieves the cryptographic key used by this instance of AES.
      *
      * @return the cryptographic key
      */
     public Key getKey() {
         return key;
+    }
+
+    private Cipher getCypher() throws NoSuchAlgorithmException {
+        try {
+            return Cipher.getInstance("AES");
+        } catch (NoSuchPaddingException e) {
+            throw new IllegalStateException(e);
+        }
     }
 }
